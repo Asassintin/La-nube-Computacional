@@ -51,7 +51,6 @@ Un grupo de recursos es un contenedor lógico para los recursos relacionados en 
    - **Región**: Selecciona una región cercana a tu ubicación
    - Haz clic en **"Revisar y crear"** → **"Crear"**
 
-![Configuración del Grupo](images/azure--008.png)
 
 ## 3. Crear Aplicación Web
 
@@ -82,9 +81,7 @@ Ahora crearemos el servicio de aplicación web donde hospedaremos nuestra aplica
    - Haz clic en **"Review + create"**
    - Luego en **"Create"**
    - Espera a que termine la implementación
-   - Ve al recurso creado (tu App Service)
-
-![App Service Dashboard](images/azure--014.png)
+   
 
 ## 4. Preparar la Aplicación Local
 
@@ -139,7 +136,6 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5500, debug=True)
 ```
 
-![App.py Content](images/azure--017.png)
 
 #### 📄 `requirements.txt`
 
@@ -148,7 +144,6 @@ flask==3.0.3
 gunicorn==20.1.0
 ```
 
-![Requirements.txt Content](images/azure--020.png)
 
 > ⚠️ **Nota importante**: El archivo debe llamarse `requirements.txt` (no `requeriments.txt` como aparece en algunos archivos del proyecto)
 
@@ -170,8 +165,8 @@ Este método permite desplegar tu aplicación directamente desde un archivo ZIP.
    - Selecciona los archivos `app.py` y `requirements.txt`
    - Crea un archivo ZIP con ambos archivos
    - Nombra el archivo (ej: `tenis-app.zip`)
+     ![Requirements.txt Content](images/azure--020.png)
 
-![Creating ZIP file](images/azure--023.png)
 
 2. **Instalar y configurar Azure CLI**
    - Descarga e instala [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
@@ -181,6 +176,7 @@ Este método permite desplegar tu aplicación directamente desde un archivo ZIP.
 
 3. **Realizar el despliegue**
    - Navega al directorio donde tienes el archivo ZIP
+     ![Creating ZIP file](images/azure--023.png)
    - Ejecuta el siguiente comando:
 
 ```bash
@@ -193,7 +189,6 @@ az webapp deploy --resource-group cugdl-nubeapp_group --name tenis-app --src-pat
    - Si el comando muestra "Deployment has completed successfully", el despliegue fue exitoso
    - Puedes verificar el estado en el portal de Azure
 
-![Deployment Success](images/azure--029.png)
 
 ## 6. Configurar Startup Command
 
@@ -211,9 +206,11 @@ Para que Azure sepa cómo ejecutar tu aplicación Flask, necesitas configurar el
    ```bash
    gunicorn --bind=0.0.0.0:8000 app:app
    ```
+   
+![Working Application](images/azure--017.png)
+
    - Haz clic en **"Save"** (Guardar)
 
-![Startup Command Configuration](images/azure--032.png)
 
 > 📝 **Explicación del comando**:
 > - `gunicorn`: Servidor WSGI para aplicaciones Python
@@ -230,14 +227,13 @@ Una vez completada la configuración, es hora de verificar que tu aplicación es
    - Ve a la página **"Overview"** de tu App Service
    - Busca el **"Default domain"** o **"URL"**
    - Copia la URL o haz clic directamente en ella
-
-![App Service URL](images/azure--014.png)
+![Deployment Success](images/azure--029.png)
 
 2. **Verificar funcionamiento**
    - La aplicación debería cargar mostrando tu página de bienvenida
    - Si hay errores, revisa los logs en **"Log stream"** en el portal de Azure
-
-![Working Application](images/azure--017.png)
+     ![Startup Command Configuration](images/azure--032.png)
+     
 
 ## 8. Gestión de Recursos
 
@@ -258,11 +254,6 @@ Para evitar consumir créditos innecesariamente:
    - Si ya no necesitas la aplicación, elimina todo el grupo de recursos
    - Esto eliminará todos los recursos asociados y detendrá cualquier facturación
 
-### 📊 Monitoreo y logs
-
-- **Application Insights**: Para monitoreo avanzado
-- **Log stream**: Para ver logs en tiempo real
-- **Metrics**: Para revisar rendimiento y uso
 
 ## 🎉 ¡Felicitaciones!
 
